@@ -1,0 +1,14 @@
+## create vm
+az vm create --resource-group <myResourceGroup> 
+--name myVM 
+--image win2022datacenter 
+--size Standard_B1s 
+--public-ip-sku Standard 
+--admin-username azureuser
+
+# Attaching disk
+az vm disk attach
+--resource-group <resource group name> 
+--vm-name <virtual machine name> 
+--name <name of disk> 
+--size-gb <size of disk in integer> --sku Premium_LRS --new
