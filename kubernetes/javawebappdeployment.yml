@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: imagelabel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: imagelabel
+  template:
+    metadata:
+      labels:
+        app: imagelabel
+    spec:
+      containers:
+      - name: imagelabel
+        image: palpalacr1.azurecr.io/imagelabel:latest
+        resources:
+          requests:
+            cpu: "1"
+            memory: "1Gi"
+          limits:
+            cpu: "2"
+            memory: "2Gi"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: imagelabel
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: imagelabel

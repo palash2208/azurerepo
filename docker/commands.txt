@@ -1,0 +1,10 @@
+docker build -t imagelabel .
+
+docker image ls
+
+docker run -p 8080:8080 imagelabel
+
+docker tag iamgelabel palpalacr1.azurecr.io/imagelabel
+docker push palpalacr1.azurecr.io/imagelabel
+
+docker pull

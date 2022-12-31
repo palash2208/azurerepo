@@ -14,5 +14,15 @@ az aks create \
     --name $AZ_KUBERNETES_CLUSTER \
     --attach-acr $AZ_CONTAINER_REGISTRY \
     --dns-name-prefix=$AZ_KUBERNETES_CLUSTER_DNS_PREFIX \
-    --generate-ssh-keys 
+    --generate-ssh-keys
 
+
+docker tag iamgelabel palpalacr1.azurecr.io/imagelabel
+docker push palpalacr1.azurecr.io/imagelabel
+az acr repository show -n palpalacr1 --image imagelabel:latest
+
+az aks install-cli
+az aks get-credentials --resource-group rg-learn-01Jan --name palpalakscluster1s
+kubectl apply -f deployment.yml
+kubectl gat all
+kubectl get services imagelabel -- to get the external
