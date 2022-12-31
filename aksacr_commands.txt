@@ -1,0 +1,18 @@
+az acr create \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --name $AZ_CONTAINER_REGISTRY \
+    --sku Basic
+
+
+az configure \
+    --defaults acr=$AZ_CONTAINER_REGISTRY
+
+az acr login -n $AZ_CONTAINER_REGISTRY
+
+az aks create \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --name $AZ_KUBERNETES_CLUSTER \
+    --attach-acr $AZ_CONTAINER_REGISTRY \
+    --dns-name-prefix=$AZ_KUBERNETES_CLUSTER_DNS_PREFIX \
+    --generate-ssh-keys 
+
