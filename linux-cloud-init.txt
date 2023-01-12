@@ -2,3 +2,12 @@
 packages_upgrade: true
 packages:
   - nginx
+
+
+==
+
+package_upgrade: true
+packages:
+- stress
+runcmd:
+- sudo stress --cpu 1

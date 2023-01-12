@@ -12,3 +12,11 @@ az vm disk attach
 --vm-name <virtual machine name> 
 --name <name of disk> 
 --size-gb <size of disk in integer> --sku Premium_LRS --new
+
+az vm create \
+    --resource-group [sandbox resource group name] \
+    --name vm1 \
+    --location eastUS \
+    --image UbuntuLTS \
+    --custom-data cloud-init.txt \
+    --generate-ssh-keys
