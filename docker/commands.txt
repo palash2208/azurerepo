@@ -26,3 +26,9 @@ V3:
 docker build -t palashkosta/sampledocker:V3 -f DockerfileV3 .
 docker run -p 8080:8080 palashkosta/sampledocker:V3
 docker exec -ti 4d0dda07a10f /bin/bash
+
+docker image inspect $image_name
+# Build for ARM64 
+docker buildx build --platform=linux/arm64 -t <image-name>:<version>-arm64 .
+# Build for AMD64
+docker buildx build --platform=linux/amd64 -t <image-name>:<version>-amd64 .
